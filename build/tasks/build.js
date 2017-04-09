@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var runSequence = require('run-sequence');
 var to5 = require('gulp-babel');
+var rename = require('gulp-rename');
 var paths = require('../paths');
 var compilerOptions = require('../babel-options');
 var assign = Object.assign || require('object.assign');
@@ -15,6 +16,9 @@ gulp.task('build-html', function () {
 
 gulp.task('build-css', function () {
   return gulp.src(paths.style)
+    .pipe(rename(function (path) {
+      path.basename = 'aurelia-' + path.basename;
+    }))
     .pipe(gulp.dest(paths.output + 'es2015'))
     .pipe(gulp.dest(paths.output + 'commonjs'))
     .pipe(gulp.dest(paths.output + 'amd'))

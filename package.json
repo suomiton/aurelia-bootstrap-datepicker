@@ -1,6 +1,6 @@
 {
-  "name": "aurelia-bootstrap-datepicker",
-  "version": "0.0.8",
+  "name": "@rytmis/aurelia-bootstrap-datepicker",
+  "version": "0.0.9",
   "description": "An aurelia port for bootstrap-datepicker",
   "keywords": [
     "aurelia",
@@ -19,7 +19,7 @@
   "main": "dist/commonjs/index.js",
   "repository": {
     "type": "git",
-    "url": "http://github.com/Itprosolutions/aurelia-bootstrap-datepicker"
+    "url": "http://github.com/rytmis/aurelia-bootstrap-datepicker"
   },
   "devDependencies": {
     "aurelia-tools": "^0.1.18",
@@ -41,6 +41,7 @@
     "gulp-bump": "^0.3.1",
     "gulp-eslint": "^1.0.0",
     "gulp-yuidoc": "^0.1.2",
+    "gulp-rename": "^1.2.2",
     "isparta": "^3.1.0",
     "istanbul": "^0.3.13",
     "jasmine-core": "^2.1.3",

@@ -1,8 +1,6 @@
 # aurelia-bootstrap-datepicker
 
-Since I'm not using bootstrap anymore (in favour of [Faceman](http://www.faceman.io)) this will not be maintained. You are however free to fork and make it your own!
-
-This is an aurelia port of the bootstrap-datpicker found [here](https://github.com/eternicode/bootstrap-datepicker)
+This is an aurelia port of the bootstrap-datpicker found [here](https://github.com/eternicode/bootstrap-datepicker), forked from the original written by Thomas Seberechts.
 
 > To keep up to date on [Aurelia](http://www.aurelia.io/), please visit and subscribe to [the official blog](http://blog.durandal.io/). If you have questions, we invite you to [join us on Gitter](https://gitter.im/aurelia/discuss). If you would like to have deeper insight into our development process, please install the [ZenHub](https://zenhub.io) Chrome Extension and visit any of our repository's boards. You can get an overview of all Aurelia work by visiting [the framework board](https://github.com/aurelia/framework#boards).
 
