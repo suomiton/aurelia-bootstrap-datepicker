@@ -1,14 +1,19 @@
 'use strict';
 
-System.register([], function (_export, _context) {
-  return {
-    setters: [],
-    execute: function () {
-      function configure(config) {
-        config.globalResources('./aurelia-bootstrap-datepicker');
-      }
+System.register(['aurelia-pal'], function (_export, _context) {
+  "use strict";
 
-      _export('configure', configure);
-    }
+  var PLATFORM;
+  function configure(config) {
+    config.globalResources(PLATFORM.moduleName('./aurelia-bootstrap-datepicker'));
+  }
+
+  _export('configure', configure);
+
+  return {
+    setters: [function (_aureliaPal) {
+      PLATFORM = _aureliaPal.PLATFORM;
+    }],
+    execute: function () {}
   };
 });

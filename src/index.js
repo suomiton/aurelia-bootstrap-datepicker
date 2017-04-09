@@ -1,3 +1,4 @@
+import { PLATFORM } from 'aurelia-pal';
 export function configure(config) {
-  config.globalResources('./aurelia-bootstrap-datepicker');
+  config.globalResources(PLATFORM.moduleName('./aurelia-bootstrap-datepicker'));
 }
