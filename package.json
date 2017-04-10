@@ -1,21 +1,22 @@
 {
   "name": "@rytmis/aurelia-bootstrap-datepicker",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "An aurelia port for bootstrap-datepicker",
   "keywords": [
     "aurelia",
-    "ITPRO",
     "bootstrap",
     "date",
     "time",
     "datepicker"
   ],
-  "homepage": "http://itprosolutions.be",
   "bugs": {
-    "url": "https://github.com/Itprosolutions/aurelia-bootstrap-datepicker/issues"
+    "url": "https://github.com/rytmis/aurelia-bootstrap-datepicker/issues"
   },
   "license": "CC0-1.0",
   "author": "Thomas Seberechts <thomas@itprosolutions.be> (http://itprosolutions.be/)",
+  "contributors": [
+    "Lauri Kotilainen"
+  ],
   "main": "dist/commonjs/index.js",
   "repository": {
     "type": "git",
@@ -74,6 +75,6 @@
   },
   "dependencies": {
     "aurelia-pal": "^1.0.0",
-    "bootstrap-datepicker": "^1.6.1"
+    "bootstrap-datepicker": "1.6.4"
   }
 }
