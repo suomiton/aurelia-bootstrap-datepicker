@@ -44,22 +44,47 @@ function _initializerWarningHelper(descriptor, context) {
 }
 
 import { customElement, bindable, inject } from 'aurelia-framework';
+import { BindingEngine } from 'aurelia-binding';
 import 'bootstrap-datepicker';
 
-export let AureliaBootstrapDatepicker = (_dec = customElement('bootstrap-datepicker'), _dec2 = bindable('value'), _dec3 = inject(Element), _dec(_class = _dec2(_class = _dec3(_class = (_class2 = class AureliaBootstrapDatepicker {
+export let AureliaBootstrapDatepicker = (_dec = customElement('bootstrap-datepicker'), _dec2 = bindable('value'), _dec3 = inject(Element, BindingEngine), _dec(_class = _dec2(_class = _dec3(_class = (_class2 = class AureliaBootstrapDatepicker {
 
-  constructor(element) {
+  constructor(element, bindingEngine) {
     _initDefineProp(this, 'dpOptions', _descriptor, this);
 
     this.element = element;
+    this.bindingEngine = bindingEngine;
   }
 
   attached() {
-    let self = this;
-    $(this.datepicker).datepicker(this.dpOptions).on('changeDate', function (e) {
+    let pickerElement = $(this.datepicker);
+    pickerElement.datepicker(this.dpOptions).on('changeDate', e => {
       let changeDateEvent = new CustomEvent('changedate', { detail: { event: e }, bubbles: true });
-      self.element.dispatchEvent(changeDateEvent);
+      this.element.dispatchEvent(changeDateEvent);
+      if (!pickerElement.updating) {
+        this.value = pickerElement.datepicker('getDate');
+      }
     });
+
+    pickerElement.datepicker('setDate', this.value);
+
+    this.changeSubscription = this.bindingEngine.propertyObserver(this, 'value').subscribe((newValue, oldValue) => {
+      pickerElement.updating = true;
+      pickerElement.datepicker('setDate', newValue);
+      pickerElement.updating = false;
+    });
+  }
+
+  getTime(maybeDate) {
+    if (maybeDate && maybeDate.getTime) {
+      return maybeDate.getTime();
+    }
+
+    return null;
+  }
+
+  detached() {
+    this.changeSubscription.dispose();
   }
 }, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'dpOptions', [bindable], {
   enumerable: true,
