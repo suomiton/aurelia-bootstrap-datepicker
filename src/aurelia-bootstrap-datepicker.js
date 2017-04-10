@@ -34,14 +34,6 @@ export class AureliaBootstrapDatepicker {
       });
   }
 
-  getTime(maybeDate) {
-    if (maybeDate && maybeDate.getTime) {
-      return maybeDate.getTime();
-    }
-
-    return null;
-  }
-
   detached() {
     this.changeSubscription.dispose();
   }

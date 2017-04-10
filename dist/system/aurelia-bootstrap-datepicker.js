@@ -94,14 +94,6 @@ System.register(['aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker']
           });
         };
 
-        AureliaBootstrapDatepicker.prototype.getTime = function getTime(maybeDate) {
-          if (maybeDate && maybeDate.getTime) {
-            return maybeDate.getTime();
-          }
-
-          return null;
-        };
-
         AureliaBootstrapDatepicker.prototype.detached = function detached() {
           this.changeSubscription.dispose();
         };
