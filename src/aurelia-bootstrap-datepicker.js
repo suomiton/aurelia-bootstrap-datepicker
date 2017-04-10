@@ -19,19 +19,10 @@ export class AureliaBootstrapDatepicker {
       .on('changeDate', (e) => {
         let changeDateEvent = new CustomEvent('changedate', {detail: {event: e}, bubbles: true});
         this.element.dispatchEvent(changeDateEvent);
-        if (!pickerElement.updating) {
-          this.value = pickerElement.datepicker('getDate');
-        }
+        this.value = pickerElement.datepicker('getDate');
       });
 
     pickerElement.datepicker('setDate', this.value);
-
-    this.changeSubscription = this.bindingEngine.propertyObserver(this, 'value')
-      .subscribe((newValue, oldValue) => {
-        pickerElement.updating = true;
-        pickerElement.datepicker('setDate', newValue);
-        pickerElement.updating = false;
-      });
   }
 
   detached() {
