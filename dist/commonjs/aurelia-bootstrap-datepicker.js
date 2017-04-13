@@ -81,10 +81,6 @@ var AureliaBootstrapDatepicker = exports.AureliaBootstrapDatepicker = (_dec = (0
     pickerElement.datepicker('setDate', this.value);
   };
 
-  AureliaBootstrapDatepicker.prototype.detached = function detached() {
-    this.changeSubscription.dispose();
-  };
-
   return AureliaBootstrapDatepicker;
 }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'dpOptions', [_aureliaFramework.bindable], {
   enumerable: true,

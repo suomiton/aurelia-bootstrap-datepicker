@@ -66,10 +66,6 @@ export let AureliaBootstrapDatepicker = (_dec = customElement('bootstrap-datepic
 
     pickerElement.datepicker('setDate', this.value);
   }
-
-  detached() {
-    this.changeSubscription.dispose();
-  }
 }, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'dpOptions', [bindable], {
   enumerable: true,
   initializer: null

@@ -24,8 +24,4 @@ export class AureliaBootstrapDatepicker {
 
     pickerElement.datepicker('setDate', this.value);
   }
-
-  detached() {
-    this.changeSubscription.dispose();
-  }
 }

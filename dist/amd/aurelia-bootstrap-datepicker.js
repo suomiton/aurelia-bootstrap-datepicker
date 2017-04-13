@@ -80,10 +80,6 @@ define(['exports', 'aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker
       pickerElement.datepicker('setDate', this.value);
     };
 
-    AureliaBootstrapDatepicker.prototype.detached = function detached() {
-      this.changeSubscription.dispose();
-    };
-
     return AureliaBootstrapDatepicker;
   }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'dpOptions', [_aureliaFramework.bindable], {
     enumerable: true,
