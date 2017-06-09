@@ -16,8 +16,11 @@ let defaultOptions = {
 
 @customElement('bootstrap-datepicker')
 @inject(Element, BindingEngine, TaskQueue)
-@bindable('value', 'dpOptions', 'placeholder')
 export class AureliaBootstrapDatepicker {
+
+  @bindable value;
+  @bindable dpOptions;
+  @bindable placeholder;
 
   constructor(element, bindingEngine, taskQueue) {
     this.element = element;
