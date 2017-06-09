@@ -1,4 +1,4 @@
-define(['exports', 'aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker'], function (exports, _aureliaFramework, _aureliaBinding) {
+define(['exports', 'aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker', 'es6-object-assign'], function (exports, _aureliaFramework, _aureliaBinding) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -55,34 +55,98 @@ define(['exports', 'aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
   }
 
-  var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor;
+  var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
 
-  var AureliaBootstrapDatepicker = exports.AureliaBootstrapDatepicker = (_dec = (0, _aureliaFramework.customElement)('bootstrap-datepicker'), _dec2 = (0, _aureliaFramework.bindable)('value'), _dec3 = (0, _aureliaFramework.inject)(Element, _aureliaBinding.BindingEngine), _dec(_class = _dec2(_class = _dec3(_class = (_class2 = function () {
-    function AureliaBootstrapDatepicker(element, bindingEngine) {
+  var id = 0;
+  function getId() {
+    id += 1;
+    return id;
+  }
+
+  var defaultOptions = {
+    autoclose: true,
+    placeholder: ''
+  };
+
+  var AureliaBootstrapDatepicker = exports.AureliaBootstrapDatepicker = (_dec = (0, _aureliaFramework.customElement)('bootstrap-datepicker'), _dec2 = (0, _aureliaFramework.inject)(Element, _aureliaBinding.BindingEngine, _aureliaFramework.TaskQueue), _dec3 = (0, _aureliaFramework.bindable)({ changeHandler: 'valueChanged' }), _dec(_class = _dec2(_class = (_class2 = function () {
+    function AureliaBootstrapDatepicker(element, bindingEngine, taskQueue) {
       _classCallCheck(this, AureliaBootstrapDatepicker);
 
-      _initDefineProp(this, 'dpOptions', _descriptor, this);
+      _initDefineProp(this, 'value', _descriptor, this);
+
+      _initDefineProp(this, 'dpOptions', _descriptor2, this);
+
+      _initDefineProp(this, 'placeholder', _descriptor3, this);
 
       this.element = element;
       this.bindingEngine = bindingEngine;
+      this.taskQueue = taskQueue;
+      this.id = getId();
     }
 
     AureliaBootstrapDatepicker.prototype.attached = function attached() {
       var _this = this;
 
-      var pickerElement = $(this.datepicker);
-      pickerElement.datepicker(this.dpOptions).on('changeDate', function (e) {
-        var changeDateEvent = new CustomEvent('changedate', { detail: { event: e }, bubbles: true });
-        _this.element.dispatchEvent(changeDateEvent);
-        _this.value = pickerElement.datepicker('getDate');
+      this.__pickerElement = $(this.datepicker);
+
+      this.dpOptions = this.dpOptions || {};
+      var parentElement = this.element.parentElement;
+      if (!parentElement.id) {
+        parentElement.id = 'au-bootstrap-picker-host-' + this.id;
+      }
+
+      var options = Object.assign({}, defaultOptions, { container: '#' + parentElement.id }, this.dpOptions);
+
+      this.__pickerElement.datepicker(options).on('changeDate', function (e) {
+        _this.__internalUpdate(function () {
+          var changeDateEvent = new CustomEvent('changedate', { detail: { event: e }, bubbles: true });
+          _this.element.dispatchEvent(changeDateEvent);
+          _this.value = _this.__pickerElement.datepicker('getDate');
+        });
       });
 
-      pickerElement.datepicker('setDate', this.value);
+      this.valueChanged();
+    };
+
+    AureliaBootstrapDatepicker.prototype.bind = function bind() {
+      this.placeholder = this.placeholder || '';
+    };
+
+    AureliaBootstrapDatepicker.prototype.valueChanged = function valueChanged() {
+      var _this2 = this;
+
+      this.__updateGuard(function () {
+        var date = _this2.value.toDate ? _this2.value.toDate() : _this2.value;
+        _this2.__pickerElement.datepicker('setDate', date);
+      });
+    };
+
+    AureliaBootstrapDatepicker.prototype.__internalUpdate = function __internalUpdate(fn) {
+      this.__updatingInternalState__ = true;
+
+      fn();
+      this.taskQueue.flushMicroTaskQueue();
+
+      this.__updatingInternalState__ = false;
+    };
+
+    AureliaBootstrapDatepicker.prototype.__updateGuard = function __updateGuard(fn) {
+      if (this.__updatingInternalState__) {
+        return;
+      }
+
+      fn();
     };
 
     return AureliaBootstrapDatepicker;
-  }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'dpOptions', [_aureliaFramework.bindable], {
+  }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec3], {
     enumerable: true,
     initializer: null
-  })), _class2)) || _class) || _class) || _class);
+  }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'dpOptions', [_aureliaFramework.bindable], {
+    enumerable: true,
+    initializer: null
+  }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'placeholder', [_aureliaFramework.bindable], {
+    enumerable: true,
+    initializer: null
+  })), _class2)) || _class) || _class);
 });
