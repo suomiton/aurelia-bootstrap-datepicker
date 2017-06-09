@@ -16,11 +16,8 @@ let defaultOptions = {
 
 @customElement('bootstrap-datepicker')
 @inject(Element, BindingEngine, TaskQueue)
+@bindable('value', 'dpOptions', 'placeholder')
 export class AureliaBootstrapDatepicker {
-
-  @bindable({changeHandler: 'valueChanged'}) value;
-  @bindable dpOptions;
-  @bindable placeholder;
 
   constructor(element, bindingEngine, taskQueue) {
     this.element = element;
@@ -59,7 +56,7 @@ export class AureliaBootstrapDatepicker {
 
   valueChanged() {
     this.__updateGuard(() => {
-      let date = this.value.toDate ? this.value.toDate() : this.value;
+      let date = (this.value && this.value.toDate) ? this.value.toDate() : this.value;
       this.__pickerElement.datepicker('setDate', date);
     });
   }

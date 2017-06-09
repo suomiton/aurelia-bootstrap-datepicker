@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.AureliaBootstrapDatepicker = undefined;
 
-var _dec, _dec2, _dec3, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
+var _dec, _dec2, _dec3, _class;
 
 var _aureliaFramework = require('aurelia-framework');
 
@@ -15,50 +15,7 @@ require('bootstrap-datepicker');
 
 require('es6-object-assign');
 
-function _initDefineProp(target, property, descriptor, context) {
-  if (!descriptor) return;
-  Object.defineProperty(target, property, {
-    enumerable: descriptor.enumerable,
-    configurable: descriptor.configurable,
-    writable: descriptor.writable,
-    value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
-  });
-}
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-  var desc = {};
-  Object['ke' + 'ys'](descriptor).forEach(function (key) {
-    desc[key] = descriptor[key];
-  });
-  desc.enumerable = !!desc.enumerable;
-  desc.configurable = !!desc.configurable;
-
-  if ('value' in desc || desc.initializer) {
-    desc.writable = true;
-  }
-
-  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-    return decorator(target, property, desc) || desc;
-  }, desc);
-
-  if (context && desc.initializer !== void 0) {
-    desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-    desc.initializer = undefined;
-  }
-
-  if (desc.initializer === void 0) {
-    Object['define' + 'Property'](target, property, desc);
-    desc = null;
-  }
-
-  return desc;
-}
-
-function _initializerWarningHelper(descriptor, context) {
-  throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
-}
 
 var id = 0;
 function getId() {
@@ -71,15 +28,9 @@ var defaultOptions = {
   placeholder: ''
 };
 
-var AureliaBootstrapDatepicker = exports.AureliaBootstrapDatepicker = (_dec = (0, _aureliaFramework.customElement)('bootstrap-datepicker'), _dec2 = (0, _aureliaFramework.inject)(Element, _aureliaBinding.BindingEngine, _aureliaFramework.TaskQueue), _dec3 = (0, _aureliaFramework.bindable)({ changeHandler: 'valueChanged' }), _dec(_class = _dec2(_class = (_class2 = function () {
+var AureliaBootstrapDatepicker = exports.AureliaBootstrapDatepicker = (_dec = (0, _aureliaFramework.customElement)('bootstrap-datepicker'), _dec2 = (0, _aureliaFramework.inject)(Element, _aureliaBinding.BindingEngine, _aureliaFramework.TaskQueue), _dec3 = (0, _aureliaFramework.bindable)('value', 'dpOptions', 'placeholder'), _dec(_class = _dec2(_class = _dec3(_class = function () {
   function AureliaBootstrapDatepicker(element, bindingEngine, taskQueue) {
     _classCallCheck(this, AureliaBootstrapDatepicker);
-
-    _initDefineProp(this, 'value', _descriptor, this);
-
-    _initDefineProp(this, 'dpOptions', _descriptor2, this);
-
-    _initDefineProp(this, 'placeholder', _descriptor3, this);
 
     this.element = element;
     this.bindingEngine = bindingEngine;
@@ -119,7 +70,7 @@ var AureliaBootstrapDatepicker = exports.AureliaBootstrapDatepicker = (_dec = (0
     var _this2 = this;
 
     this.__updateGuard(function () {
-      var date = _this2.value.toDate ? _this2.value.toDate() : _this2.value;
+      var date = _this2.value && _this2.value.toDate ? _this2.value.toDate() : _this2.value;
       _this2.__pickerElement.datepicker('setDate', date);
     });
   };
@@ -142,13 +93,4 @@ var AureliaBootstrapDatepicker = exports.AureliaBootstrapDatepicker = (_dec = (0
   };
 
   return AureliaBootstrapDatepicker;
-}(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'value', [_dec3], {
-  enumerable: true,
-  initializer: null
-}), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'dpOptions', [_aureliaFramework.bindable], {
-  enumerable: true,
-  initializer: null
-}), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'placeholder', [_aureliaFramework.bindable], {
-  enumerable: true,
-  initializer: null
-})), _class2)) || _class) || _class);
+}()) || _class) || _class) || _class);
