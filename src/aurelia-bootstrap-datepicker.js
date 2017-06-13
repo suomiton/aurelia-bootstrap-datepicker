@@ -9,14 +9,14 @@ function getId() {
   return id;
 }
 
-let defaultOptions = {
-  autoclose: true,
-  placeholder: ''
-};
-
 @customElement('bootstrap-datepicker')
 @inject(Element, BindingEngine, TaskQueue)
 export class AureliaBootstrapDatepicker {
+  static defaultOptions = {
+    autoclose: true,
+    placeholder: ''
+  };
+
 
   @bindable value;
   @bindable dpOptions;
@@ -29,6 +29,14 @@ export class AureliaBootstrapDatepicker {
     this.id = getId();
   }
 
+  static setDefaultOptions(newDefaults) {
+    AureliaBootstrapDatepicker.defaultOptions = Object.assign({}, AureliaBootstrapDatepicker.defaultOptions, newDefaults);
+  }
+
+  static getDefaultOptions() {
+    return AureliaBootstrapDatepicker.defaultOptions;
+  }
+
   attached() {
     this.__pickerElement = $(this.datepicker);
 
@@ -38,7 +46,7 @@ export class AureliaBootstrapDatepicker {
       parentElement.id = `au-bootstrap-picker-host-${this.id}`;
     }
 
-    let options = Object.assign({}, defaultOptions, {container: `#${parentElement.id}`}, this.dpOptions);
+    let options = Object.assign({}, AureliaBootstrapDatepicker.defaultOptions, {container: `#${parentElement.id}`}, this.dpOptions);
 
     this.__pickerElement
       .datepicker(options)

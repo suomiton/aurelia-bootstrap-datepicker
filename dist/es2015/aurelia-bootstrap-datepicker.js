@@ -1,4 +1,4 @@
-var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _class3, _temp;
 
 function _initDefineProp(target, property, descriptor, context) {
   if (!descriptor) return;
@@ -54,12 +54,7 @@ function getId() {
   return id;
 }
 
-let defaultOptions = {
-  autoclose: true,
-  placeholder: ''
-};
-
-export let AureliaBootstrapDatepicker = (_dec = customElement('bootstrap-datepicker'), _dec2 = inject(Element, BindingEngine, TaskQueue), _dec(_class = _dec2(_class = (_class2 = class AureliaBootstrapDatepicker {
+export let AureliaBootstrapDatepicker = (_dec = customElement('bootstrap-datepicker'), _dec2 = inject(Element, BindingEngine, TaskQueue), _dec(_class = _dec2(_class = (_class2 = (_temp = _class3 = class AureliaBootstrapDatepicker {
 
   constructor(element, bindingEngine, taskQueue) {
     _initDefineProp(this, 'value', _descriptor, this);
@@ -74,6 +69,14 @@ export let AureliaBootstrapDatepicker = (_dec = customElement('bootstrap-datepic
     this.id = getId();
   }
 
+  static setDefaultOptions(newDefaults) {
+    AureliaBootstrapDatepicker.defaultOptions = Object.assign({}, AureliaBootstrapDatepicker.defaultOptions, newDefaults);
+  }
+
+  static getDefaultOptions() {
+    return AureliaBootstrapDatepicker.defaultOptions;
+  }
+
   attached() {
     this.__pickerElement = $(this.datepicker);
 
@@ -83,7 +86,7 @@ export let AureliaBootstrapDatepicker = (_dec = customElement('bootstrap-datepic
       parentElement.id = `au-bootstrap-picker-host-${this.id}`;
     }
 
-    let options = Object.assign({}, defaultOptions, { container: `#${parentElement.id}` }, this.dpOptions);
+    let options = Object.assign({}, AureliaBootstrapDatepicker.defaultOptions, { container: `#${parentElement.id}` }, this.dpOptions);
 
     this.__pickerElement.datepicker(options).on('changeDate', e => {
       this.__internalUpdate(() => {
@@ -123,7 +126,10 @@ export let AureliaBootstrapDatepicker = (_dec = customElement('bootstrap-datepic
 
     fn();
   }
-}, (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'value', [bindable], {
+}, _class3.defaultOptions = {
+  autoclose: true,
+  placeholder: ''
+}, _temp), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'value', [bindable], {
   enumerable: true,
   initializer: null
 }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'dpOptions', [bindable], {

@@ -3,7 +3,7 @@
 System.register(['aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker', 'es6-object-assign'], function (_export, _context) {
   "use strict";
 
-  var customElement, bindable, inject, TaskQueue, BindingEngine, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, id, defaultOptions, AureliaBootstrapDatepicker;
+  var customElement, bindable, inject, TaskQueue, BindingEngine, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _class3, _temp, id, AureliaBootstrapDatepicker;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -70,12 +70,8 @@ System.register(['aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker',
     }, function (_bootstrapDatepicker) {}, function (_es6ObjectAssign) {}],
     execute: function () {
       id = 0;
-      defaultOptions = {
-        autoclose: true,
-        placeholder: ''
-      };
 
-      _export('AureliaBootstrapDatepicker', AureliaBootstrapDatepicker = (_dec = customElement('bootstrap-datepicker'), _dec2 = inject(Element, BindingEngine, TaskQueue), _dec(_class = _dec2(_class = (_class2 = function () {
+      _export('AureliaBootstrapDatepicker', AureliaBootstrapDatepicker = (_dec = customElement('bootstrap-datepicker'), _dec2 = inject(Element, BindingEngine, TaskQueue), _dec(_class = _dec2(_class = (_class2 = (_temp = _class3 = function () {
         function AureliaBootstrapDatepicker(element, bindingEngine, taskQueue) {
           _classCallCheck(this, AureliaBootstrapDatepicker);
 
@@ -91,6 +87,14 @@ System.register(['aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker',
           this.id = getId();
         }
 
+        AureliaBootstrapDatepicker.setDefaultOptions = function setDefaultOptions(newDefaults) {
+          AureliaBootstrapDatepicker.defaultOptions = Object.assign({}, AureliaBootstrapDatepicker.defaultOptions, newDefaults);
+        };
+
+        AureliaBootstrapDatepicker.getDefaultOptions = function getDefaultOptions() {
+          return AureliaBootstrapDatepicker.defaultOptions;
+        };
+
         AureliaBootstrapDatepicker.prototype.attached = function attached() {
           var _this = this;
 
@@ -102,7 +106,7 @@ System.register(['aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker',
             parentElement.id = 'au-bootstrap-picker-host-' + this.id;
           }
 
-          var options = Object.assign({}, defaultOptions, { container: '#' + parentElement.id }, this.dpOptions);
+          var options = Object.assign({}, AureliaBootstrapDatepicker.defaultOptions, { container: '#' + parentElement.id }, this.dpOptions);
 
           this.__pickerElement.datepicker(options).on('changeDate', function (e) {
             _this.__internalUpdate(function () {
@@ -146,7 +150,10 @@ System.register(['aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker',
         };
 
         return AureliaBootstrapDatepicker;
-      }(), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'value', [bindable], {
+      }(), _class3.defaultOptions = {
+        autoclose: true,
+        placeholder: ''
+      }, _temp), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'value', [bindable], {
         enumerable: true,
         initializer: null
       }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'dpOptions', [bindable], {
