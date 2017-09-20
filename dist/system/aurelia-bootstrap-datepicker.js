@@ -1,9 +1,9 @@
 'use strict';
 
-System.register(['aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker', 'es6-object-assign'], function (_export, _context) {
+System.register(['aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker', 'es6-object-assign', 'moment'], function (_export, _context) {
   "use strict";
 
-  var customElement, bindable, inject, TaskQueue, BindingEngine, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _class3, _temp, id, AureliaBootstrapDatepicker;
+  var customElement, bindable, inject, TaskQueue, BindingEngine, moment, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _class3, _temp, id, AureliaBootstrapDatepicker;
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -67,7 +67,9 @@ System.register(['aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker',
       TaskQueue = _aureliaFramework.TaskQueue;
     }, function (_aureliaBinding) {
       BindingEngine = _aureliaBinding.BindingEngine;
-    }, function (_bootstrapDatepicker) {}, function (_es6ObjectAssign) {}],
+    }, function (_bootstrapDatepicker) {}, function (_es6ObjectAssign) {}, function (_moment) {
+      moment = _moment;
+    }],
     execute: function () {
       id = 0;
 
@@ -112,7 +114,7 @@ System.register(['aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker',
             _this.__internalUpdate(function () {
               var changeDateEvent = new CustomEvent('changedate', { detail: { event: e }, bubbles: true });
               _this.element.dispatchEvent(changeDateEvent);
-              _this.value = _this.__pickerElement.datepicker('getDate');
+              _this.value = _this.__pickerElement.datepicker('getUTCDate');
             });
           });
 
@@ -127,8 +129,9 @@ System.register(['aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker',
           var _this2 = this;
 
           this.__updateGuard(function () {
-            var date = _this2.value && _this2.value.toDate ? _this2.value.toDate() : _this2.value;
-            _this2.__pickerElement.datepicker('setDate', date);
+            var date = moment.utc(_this2.value).toDate();
+
+            _this2.__pickerElement.datepicker('setUTCDate', date);
           });
         };
 

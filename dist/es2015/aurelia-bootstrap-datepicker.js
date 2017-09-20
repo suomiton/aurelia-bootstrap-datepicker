@@ -47,6 +47,7 @@ import { customElement, bindable, inject, TaskQueue } from 'aurelia-framework';
 import { BindingEngine } from 'aurelia-binding';
 import 'bootstrap-datepicker';
 import 'es6-object-assign';
+import * as moment from 'moment';
 
 let id = 0;
 function getId() {
@@ -92,7 +93,7 @@ export let AureliaBootstrapDatepicker = (_dec = customElement('bootstrap-datepic
       this.__internalUpdate(() => {
         let changeDateEvent = new CustomEvent('changedate', { detail: { event: e }, bubbles: true });
         this.element.dispatchEvent(changeDateEvent);
-        this.value = this.__pickerElement.datepicker('getDate');
+        this.value = this.__pickerElement.datepicker('getUTCDate');
       });
     });
 
@@ -105,8 +106,9 @@ export let AureliaBootstrapDatepicker = (_dec = customElement('bootstrap-datepic
 
   valueChanged() {
     this.__updateGuard(() => {
-      let date = this.value && this.value.toDate ? this.value.toDate() : this.value;
-      this.__pickerElement.datepicker('setDate', date);
+      let date = moment.utc(this.value).toDate();
+
+      this.__pickerElement.datepicker('setUTCDate', date);
     });
   }
 

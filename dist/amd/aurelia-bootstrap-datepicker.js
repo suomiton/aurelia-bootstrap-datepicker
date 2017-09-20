@@ -1,10 +1,29 @@
-define(['exports', 'aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker', 'es6-object-assign'], function (exports, _aureliaFramework, _aureliaBinding) {
+define(['exports', 'aurelia-framework', 'aurelia-binding', 'moment', 'bootstrap-datepicker', 'es6-object-assign'], function (exports, _aureliaFramework, _aureliaBinding, _moment) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
   exports.AureliaBootstrapDatepicker = undefined;
+
+  var moment = _interopRequireWildcard(_moment);
+
+  function _interopRequireWildcard(obj) {
+    if (obj && obj.__esModule) {
+      return obj;
+    } else {
+      var newObj = {};
+
+      if (obj != null) {
+        for (var key in obj) {
+          if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+        }
+      }
+
+      newObj.default = obj;
+      return newObj;
+    }
+  }
 
   function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -104,7 +123,7 @@ define(['exports', 'aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker
         _this.__internalUpdate(function () {
           var changeDateEvent = new CustomEvent('changedate', { detail: { event: e }, bubbles: true });
           _this.element.dispatchEvent(changeDateEvent);
-          _this.value = _this.__pickerElement.datepicker('getDate');
+          _this.value = _this.__pickerElement.datepicker('getUTCDate');
         });
       });
 
@@ -119,8 +138,9 @@ define(['exports', 'aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker
       var _this2 = this;
 
       this.__updateGuard(function () {
-        var date = _this2.value && _this2.value.toDate ? _this2.value.toDate() : _this2.value;
-        _this2.__pickerElement.datepicker('setDate', date);
+        var date = moment.utc(_this2.value).toDate();
+
+        _this2.__pickerElement.datepicker('setUTCDate', date);
       });
     };
 

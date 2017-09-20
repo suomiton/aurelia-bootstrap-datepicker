@@ -15,6 +15,12 @@ require('bootstrap-datepicker');
 
 require('es6-object-assign');
 
+var _moment = require('moment');
+
+var moment = _interopRequireWildcard(_moment);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _initDefineProp(target, property, descriptor, context) {
   if (!descriptor) return;
   Object.defineProperty(target, property, {
@@ -107,7 +113,7 @@ var AureliaBootstrapDatepicker = exports.AureliaBootstrapDatepicker = (_dec = (0
       _this.__internalUpdate(function () {
         var changeDateEvent = new CustomEvent('changedate', { detail: { event: e }, bubbles: true });
         _this.element.dispatchEvent(changeDateEvent);
-        _this.value = _this.__pickerElement.datepicker('getDate');
+        _this.value = _this.__pickerElement.datepicker('getUTCDate');
       });
     });
 
@@ -122,8 +128,9 @@ var AureliaBootstrapDatepicker = exports.AureliaBootstrapDatepicker = (_dec = (0
     var _this2 = this;
 
     this.__updateGuard(function () {
-      var date = _this2.value && _this2.value.toDate ? _this2.value.toDate() : _this2.value;
-      _this2.__pickerElement.datepicker('setDate', date);
+      var date = moment.utc(_this2.value).toDate();
+
+      _this2.__pickerElement.datepicker('setUTCDate', date);
     });
   };
 
