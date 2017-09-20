@@ -15,7 +15,8 @@ function getId() {
 export class AureliaBootstrapDatepicker {
   static defaultOptions = {
     autoclose: true,
-    placeholder: ''
+    placeholder: '',
+    format: 'm/d/yyyy'
   };
 
 
@@ -47,10 +48,10 @@ export class AureliaBootstrapDatepicker {
       parentElement.id = `au-bootstrap-picker-host-${this.id}`;
     }
 
-    let options = Object.assign({}, AureliaBootstrapDatepicker.defaultOptions, {container: `#${parentElement.id}`}, this.dpOptions);
+    this.options = Object.assign({}, AureliaBootstrapDatepicker.defaultOptions, {container: `#${parentElement.id}`}, this.dpOptions);
 
     this.__pickerElement
-      .datepicker(options)
+      .datepicker(this.options)
       .on('changeDate', (e) => {
         this.__internalUpdate(() => {
           let changeDateEvent = new CustomEvent('changedate', {detail: {event: e}, bubbles: true});
@@ -68,7 +69,7 @@ export class AureliaBootstrapDatepicker {
 
   valueChanged() {
     this.__updateGuard(() => {
-      let date = moment.utc(this.value).toDate();
+      let date = moment.utc(this.value, this.options.format.toUpperCase()).toDate();
 
       this.__pickerElement.datepicker('setUTCDate', date);
     });

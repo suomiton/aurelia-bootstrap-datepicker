@@ -87,9 +87,9 @@ export let AureliaBootstrapDatepicker = (_dec = customElement('bootstrap-datepic
       parentElement.id = `au-bootstrap-picker-host-${this.id}`;
     }
 
-    let options = Object.assign({}, AureliaBootstrapDatepicker.defaultOptions, { container: `#${parentElement.id}` }, this.dpOptions);
+    this.options = Object.assign({}, AureliaBootstrapDatepicker.defaultOptions, { container: `#${parentElement.id}` }, this.dpOptions);
 
-    this.__pickerElement.datepicker(options).on('changeDate', e => {
+    this.__pickerElement.datepicker(this.options).on('changeDate', e => {
       this.__internalUpdate(() => {
         let changeDateEvent = new CustomEvent('changedate', { detail: { event: e }, bubbles: true });
         this.element.dispatchEvent(changeDateEvent);
@@ -106,7 +106,7 @@ export let AureliaBootstrapDatepicker = (_dec = customElement('bootstrap-datepic
 
   valueChanged() {
     this.__updateGuard(() => {
-      let date = moment.utc(this.value).toDate();
+      let date = moment.utc(this.value, this.options.format.toUpperCase()).toDate();
 
       this.__pickerElement.datepicker('setUTCDate', date);
     });
@@ -130,7 +130,8 @@ export let AureliaBootstrapDatepicker = (_dec = customElement('bootstrap-datepic
   }
 }, _class3.defaultOptions = {
   autoclose: true,
-  placeholder: ''
+  placeholder: '',
+  format: 'm/d/yyyy'
 }, _temp), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'value', [bindable], {
   enumerable: true,
   initializer: null

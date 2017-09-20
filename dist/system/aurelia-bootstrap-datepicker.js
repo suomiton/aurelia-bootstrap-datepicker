@@ -108,9 +108,9 @@ System.register(['aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker',
             parentElement.id = 'au-bootstrap-picker-host-' + this.id;
           }
 
-          var options = Object.assign({}, AureliaBootstrapDatepicker.defaultOptions, { container: '#' + parentElement.id }, this.dpOptions);
+          this.options = Object.assign({}, AureliaBootstrapDatepicker.defaultOptions, { container: '#' + parentElement.id }, this.dpOptions);
 
-          this.__pickerElement.datepicker(options).on('changeDate', function (e) {
+          this.__pickerElement.datepicker(this.options).on('changeDate', function (e) {
             _this.__internalUpdate(function () {
               var changeDateEvent = new CustomEvent('changedate', { detail: { event: e }, bubbles: true });
               _this.element.dispatchEvent(changeDateEvent);
@@ -129,7 +129,7 @@ System.register(['aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker',
           var _this2 = this;
 
           this.__updateGuard(function () {
-            var date = moment.utc(_this2.value).toDate();
+            var date = moment.utc(_this2.value, _this2.options.format.toUpperCase()).toDate();
 
             _this2.__pickerElement.datepicker('setUTCDate', date);
           });
@@ -155,7 +155,8 @@ System.register(['aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker',
         return AureliaBootstrapDatepicker;
       }(), _class3.defaultOptions = {
         autoclose: true,
-        placeholder: ''
+        placeholder: '',
+        format: 'm/d/yyyy'
       }, _temp), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'value', [bindable], {
         enumerable: true,
         initializer: null
