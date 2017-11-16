@@ -1,6 +1,6 @@
 {
   "name": "@rytmis/aurelia-bootstrap-datepicker",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "An aurelia port for bootstrap-datepicker",
   "keywords": [
     "aurelia",

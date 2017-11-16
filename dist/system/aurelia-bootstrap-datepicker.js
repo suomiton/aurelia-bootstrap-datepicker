@@ -118,6 +118,7 @@ System.register(['aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker',
               var changeDateEvent = new CustomEvent('changedate', { detail: { event: e }, bubbles: true });
               _this.element.dispatchEvent(changeDateEvent);
               _this.value = _this.__pickerElement.datepicker('getUTCDate');
+              _this.inputValue = _this.__pickerElement.val();
             });
           });
 
@@ -132,7 +133,15 @@ System.register(['aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker',
           var _this2 = this;
 
           this.__updateGuard(function () {
+            if (_this2.value === null) {
+              _this2.__pickerElement.datepicker('setUTCDate', '');
+              return;
+            }
+
             var date = moment.utc(_this2.value, _this2.options.format.toUpperCase()).toDate();
+            if (date.toString() === "Invalid Date") {
+              date = moment.utc(_this2.value).toDate();
+            }
 
             _this2.__pickerElement.datepicker('setUTCDate', date);
           });
