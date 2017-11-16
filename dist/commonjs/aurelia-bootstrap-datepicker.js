@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.AureliaBootstrapDatepicker = undefined;
 
-var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _class3, _temp;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _class3, _temp;
 
 var _aureliaFramework = require('aurelia-framework');
 
@@ -82,6 +82,8 @@ var AureliaBootstrapDatepicker = exports.AureliaBootstrapDatepicker = (_dec = (0
 
     _initDefineProp(this, 'placeholder', _descriptor3, this);
 
+    _initDefineProp(this, 'inputValue', _descriptor4, this);
+
     this.element = element;
     this.bindingEngine = bindingEngine;
     this.taskQueue = taskQueue;
@@ -134,6 +136,16 @@ var AureliaBootstrapDatepicker = exports.AureliaBootstrapDatepicker = (_dec = (0
     });
   };
 
+  AureliaBootstrapDatepicker.prototype.inputValueChanged = function inputValueChanged() {
+    var _this3 = this;
+
+    this.__updateGuard(function () {
+      if (_this3.inputValue === '' && _this3.value !== null && _this3.value !== undefined) {
+        _this3.value = null;
+      }
+    });
+  };
+
   AureliaBootstrapDatepicker.prototype.__internalUpdate = function __internalUpdate(fn) {
     this.__updatingInternalState__ = true;
 
@@ -163,6 +175,9 @@ var AureliaBootstrapDatepicker = exports.AureliaBootstrapDatepicker = (_dec = (0
   enumerable: true,
   initializer: null
 }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'placeholder', [_aureliaFramework.bindable], {
+  enumerable: true,
+  initializer: null
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'inputValue', [_aureliaFramework.observable], {
   enumerable: true,
   initializer: null
 })), _class2)) || _class) || _class);

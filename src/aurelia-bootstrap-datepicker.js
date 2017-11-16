@@ -1,4 +1,4 @@
-import {customElement, bindable, inject, TaskQueue} from 'aurelia-framework';
+import {customElement, bindable, observable, inject, TaskQueue} from 'aurelia-framework';
 import {BindingEngine} from 'aurelia-binding';
 import 'bootstrap-datepicker';
 import 'es6-object-assign';
@@ -23,6 +23,8 @@ export class AureliaBootstrapDatepicker {
   @bindable value;
   @bindable dpOptions;
   @bindable placeholder;
+
+  @observable inputValue;
 
   constructor(element, bindingEngine, taskQueue) {
     this.element = element;
@@ -72,6 +74,14 @@ export class AureliaBootstrapDatepicker {
       let date = moment.utc(this.value, this.options.format.toUpperCase()).toDate();
 
       this.__pickerElement.datepicker('setUTCDate', date);
+    });
+  }
+
+  inputValueChanged() {
+    this.__updateGuard(() => {
+      if (this.inputValue === '' && this.value !== null && this.value !== undefined) {
+        this.value = null;
+      }
     });
   }
 

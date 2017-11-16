@@ -74,7 +74,7 @@ define(['exports', 'aurelia-framework', 'aurelia-binding', 'moment', 'bootstrap-
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
   }
 
-  var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _class3, _temp;
+  var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _class3, _temp;
 
   var id = 0;
   function getId() {
@@ -91,6 +91,8 @@ define(['exports', 'aurelia-framework', 'aurelia-binding', 'moment', 'bootstrap-
       _initDefineProp(this, 'dpOptions', _descriptor2, this);
 
       _initDefineProp(this, 'placeholder', _descriptor3, this);
+
+      _initDefineProp(this, 'inputValue', _descriptor4, this);
 
       this.element = element;
       this.bindingEngine = bindingEngine;
@@ -144,6 +146,16 @@ define(['exports', 'aurelia-framework', 'aurelia-binding', 'moment', 'bootstrap-
       });
     };
 
+    AureliaBootstrapDatepicker.prototype.inputValueChanged = function inputValueChanged() {
+      var _this3 = this;
+
+      this.__updateGuard(function () {
+        if (_this3.inputValue === '' && _this3.value !== null && _this3.value !== undefined) {
+          _this3.value = null;
+        }
+      });
+    };
+
     AureliaBootstrapDatepicker.prototype.__internalUpdate = function __internalUpdate(fn) {
       this.__updatingInternalState__ = true;
 
@@ -173,6 +185,9 @@ define(['exports', 'aurelia-framework', 'aurelia-binding', 'moment', 'bootstrap-
     enumerable: true,
     initializer: null
   }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'placeholder', [_aureliaFramework.bindable], {
+    enumerable: true,
+    initializer: null
+  }), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'inputValue', [_aureliaFramework.observable], {
     enumerable: true,
     initializer: null
   })), _class2)) || _class) || _class);

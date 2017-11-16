@@ -1,4 +1,4 @@
-var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _class3, _temp;
+var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _class3, _temp;
 
 function _initDefineProp(target, property, descriptor, context) {
   if (!descriptor) return;
@@ -43,7 +43,7 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-import { customElement, bindable, inject, TaskQueue } from 'aurelia-framework';
+import { customElement, bindable, observable, inject, TaskQueue } from 'aurelia-framework';
 import { BindingEngine } from 'aurelia-binding';
 import 'bootstrap-datepicker';
 import 'es6-object-assign';
@@ -63,6 +63,8 @@ export let AureliaBootstrapDatepicker = (_dec = customElement('bootstrap-datepic
     _initDefineProp(this, 'dpOptions', _descriptor2, this);
 
     _initDefineProp(this, 'placeholder', _descriptor3, this);
+
+    _initDefineProp(this, 'inputValue', _descriptor4, this);
 
     this.element = element;
     this.bindingEngine = bindingEngine;
@@ -112,6 +114,14 @@ export let AureliaBootstrapDatepicker = (_dec = customElement('bootstrap-datepic
     });
   }
 
+  inputValueChanged() {
+    this.__updateGuard(() => {
+      if (this.inputValue === '' && this.value !== null && this.value !== undefined) {
+        this.value = null;
+      }
+    });
+  }
+
   __internalUpdate(fn) {
     this.__updatingInternalState__ = true;
 
@@ -139,6 +149,9 @@ export let AureliaBootstrapDatepicker = (_dec = customElement('bootstrap-datepic
   enumerable: true,
   initializer: null
 }), _descriptor3 = _applyDecoratedDescriptor(_class2.prototype, 'placeholder', [bindable], {
+  enumerable: true,
+  initializer: null
+}), _descriptor4 = _applyDecoratedDescriptor(_class2.prototype, 'inputValue', [observable], {
   enumerable: true,
   initializer: null
 })), _class2)) || _class) || _class);
