@@ -72,16 +72,26 @@ export class AureliaBootstrapDatepicker {
 
   valueChanged() {
     this.__updateGuard(() => {
-      if (this.value === null) {
+      // For null and undefined, we clear
+      if (this.value === null || this.value === undefined) {
         this.__pickerElement.datepicker('setUTCDate', '');
         return;
       }
 
+      // Try to parse the input with the specified format
       let date = moment.utc(this.value, this.options.format.toUpperCase()).toDate();
       if (date.toString() === "Invalid Date") {
+        // If it fails, try without the format specifier
         date = moment.utc(this.value).toDate();
       }
 
+      // If we're still invalid, clear everything
+      if (date.toString() === "Invalid Date") {
+        this.__pickerElement.datepicker('setUTCDate', '');
+        return;
+      }
+
+      // ... and if not, we're good to go
       this.__pickerElement.datepicker('setUTCDate', date);
     });
   }

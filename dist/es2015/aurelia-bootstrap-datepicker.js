@@ -109,7 +109,7 @@ export let AureliaBootstrapDatepicker = (_dec = customElement('bootstrap-datepic
 
   valueChanged() {
     this.__updateGuard(() => {
-      if (this.value === null) {
+      if (this.value === null || this.value === undefined) {
         this.__pickerElement.datepicker('setUTCDate', '');
         return;
       }
@@ -117,6 +117,11 @@ export let AureliaBootstrapDatepicker = (_dec = customElement('bootstrap-datepic
       let date = moment.utc(this.value, this.options.format.toUpperCase()).toDate();
       if (date.toString() === "Invalid Date") {
         date = moment.utc(this.value).toDate();
+      }
+
+      if (date.toString() === "Invalid Date") {
+        this.__pickerElement.datepicker('setUTCDate', '');
+        return;
       }
 
       this.__pickerElement.datepicker('setUTCDate', date);
