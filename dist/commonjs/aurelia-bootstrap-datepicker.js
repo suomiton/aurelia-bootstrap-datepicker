@@ -7,6 +7,8 @@ exports.AureliaBootstrapDatepicker = undefined;
 
 var _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _class3, _temp;
 
+require('./aurelia-bootstrap-datepicker3.css');
+
 var _aureliaFramework = require('aurelia-framework');
 
 var _aureliaBinding = require('aurelia-binding');

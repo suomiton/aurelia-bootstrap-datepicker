@@ -1,6 +1,6 @@
 'use strict';
 
-System.register(['aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker', 'es6-object-assign', 'moment'], function (_export, _context) {
+System.register(['./aurelia-bootstrap-datepicker3.css', 'aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker', 'es6-object-assign', 'moment'], function (_export, _context) {
   "use strict";
 
   var customElement, bindable, observable, inject, TaskQueue, BindingEngine, moment, _dec, _dec2, _class, _desc, _value, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _class3, _temp, id, AureliaBootstrapDatepicker;
@@ -60,7 +60,7 @@ System.register(['aurelia-framework', 'aurelia-binding', 'bootstrap-datepicker',
   }
 
   return {
-    setters: [function (_aureliaFramework) {
+    setters: [function (_aureliaBootstrapDatepicker3Css) {}, function (_aureliaFramework) {
       customElement = _aureliaFramework.customElement;
       bindable = _aureliaFramework.bindable;
       observable = _aureliaFramework.observable;

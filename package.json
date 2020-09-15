@@ -1,5 +1,5 @@
 {
-  "name": "@rytmis/aurelia-bootstrap-datepicker",
+  "name": "@suomiton/aurelia-bootstrap-datepicker",
   "version": "0.1.8",
   "description": "An aurelia port for bootstrap-datepicker",
   "keywords": [
@@ -15,12 +15,20 @@
   "license": "CC0-1.0",
   "author": "Thomas Seberechts <thomas@itprosolutions.be> (http://itprosolutions.be/)",
   "contributors": [
-    "Lauri Kotilainen"
+    "Lauri Kotilainen",
+    "Toni Suominen"
   ],
   "main": "dist/commonjs/index.js",
   "repository": {
     "type": "git",
-    "url": "http://github.com/rytmis/aurelia-bootstrap-datepicker"
+    "url": "https://github.com/suomiton/aurelia-bootstrap-datepicker"
+  },
+  "scripts": {
+    "preinstall": "npx npm-force-resolutions",
+    "gulp": "gulp build"
+  },
+  "resolutions": {
+    "graceful-fs": "^4.2.4"
   },
   "devDependencies": {
     "aurelia-tools": "^0.1.18",

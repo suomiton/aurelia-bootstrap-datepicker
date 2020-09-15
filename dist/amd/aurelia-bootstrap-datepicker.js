@@ -1,4 +1,4 @@
-define(['exports', 'aurelia-framework', 'aurelia-binding', 'moment', 'bootstrap-datepicker', 'es6-object-assign'], function (exports, _aureliaFramework, _aureliaBinding, _moment) {
+define(['exports', 'aurelia-framework', 'aurelia-binding', 'moment', './aurelia-bootstrap-datepicker3.css', 'bootstrap-datepicker', 'es6-object-assign'], function (exports, _aureliaFramework, _aureliaBinding, _moment) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {

@@ -43,6 +43,8 @@ function _initializerWarningHelper(descriptor, context) {
   throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
+import "./aurelia-bootstrap-datepicker3.css";
+
 import { customElement, bindable, observable, inject, TaskQueue } from 'aurelia-framework';
 import { BindingEngine } from 'aurelia-binding';
 import 'bootstrap-datepicker';

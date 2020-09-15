@@ -1,3 +1,5 @@
+import "./aurelia-bootstrap-datepicker3.css"
+
 import {customElement, bindable, observable, inject, TaskQueue} from 'aurelia-framework';
 import {BindingEngine} from 'aurelia-binding';
 import 'bootstrap-datepicker';
