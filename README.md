@@ -69,3 +69,7 @@ You can use the following properties:
 You can subscribe to the following events:
 
 * changedate - event - Fired when the date is changed.
+
+## Build Node > 10
+
+Run `npx npm-force-resolutions` before npm install so that Gulp 3 builds work correctly.

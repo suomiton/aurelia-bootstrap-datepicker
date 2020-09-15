@@ -1,6 +1,6 @@
 {
   "name": "@suomiton/aurelia-bootstrap-datepicker",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "An aurelia port for bootstrap-datepicker",
   "keywords": [
     "aurelia",
@@ -22,10 +22,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/suomiton/aurelia-bootstrap-datepicker"
-  },
-  "scripts": {
-    "preinstall": "npx npm-force-resolutions",
-    "gulp": "gulp build"
   },
   "resolutions": {
     "graceful-fs": "^4.2.4"
